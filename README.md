@@ -13,7 +13,7 @@ Shadcn build under @radix-ui. So all packages are under @radix-ui and @hookform/
 `bunx --bun shadcn@latest init`
 `bunx shadcn@latest add --all` - Add all components from Shadcn
 
-for detailed packages, check [npm-package-1](./npm-package-1.png) & [npm-package-2](./npm-package-2.png)
+for detailed packages, check [npm-package-1](./image-learn/npm-package-1.png) & [npm-package-2](./image-learn/npm-package-2.png)
 
 ## Authentication using Clerk
 
@@ -86,3 +86,17 @@ run multiple commands at the same time
 ## Clerk webhook
 
 install svix use `bun add svix`
+
+## Trpc
+
+RPC is short for "Remote Procedure Call". It is a way of calling functions on one computer (the server) from another computer (the client). With traditional HTTP/REST APIs, you call a URL and get a response. With RPC, you call a function and get a response.
+
+-   `bun add @trpc/server@next`
+-   `@trpc/client@next`
+-   `@trpc/react-query@next`
+-   `@tanstack/react-query@latest`
+-   `zod client-only server-only`
+
+For error handling `bun add react-error-boundary` which is a library for handling errors in React applications.
+
+Enable transformer with `bun add superjson` to serialize(mengubah) and deserialize(mengembalikan) data.
