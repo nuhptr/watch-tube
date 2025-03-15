@@ -100,3 +100,9 @@ RPC is short for "Remote Procedure Call". It is a way of calling functions on on
 For error handling `bun add react-error-boundary` which is a library for handling errors in React applications.
 
 Enable transformer with `bun add superjson` to serialize(mengubah) and deserialize(mengembalikan) data.
+
+## Upstash Redis (for local database and rate limiting)
+
+Using redis for caching and session.
+
+install `bun add @upstash/redis @upstash/ratelimit`
