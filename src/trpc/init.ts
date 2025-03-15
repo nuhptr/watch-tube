@@ -6,6 +6,7 @@ import superjson from "superjson"
 import { eq } from "drizzle-orm"
 import { db } from "@/db"
 import { users } from "@/db/schema"
+import { rateLimit } from "@/lib/ratelimit"
 
 export const createTRPCContext = cache(async () => {
     // TODO: Better way to get the clerk user id, and not repeated in every context
@@ -37,7 +38,11 @@ export const protectedProcedure = t.procedure.use(async function isAuthed(opts) 
 
     if (!user) throw new TRPCError({ code: "UNAUTHORIZED" })
 
+    const { success } = await rateLimit.limit(user.id)
+
+    if (!success) throw new TRPCError({ code: "TOO_MANY_REQUESTS" })
+
     return opts.next({
-        ctx: { ...ctx },
+        ctx: { ...ctx, user },
     })
 })
