@@ -33,7 +33,9 @@ export const FilterCarousel = ({ value, isLoading, onSelect, data }: FilterCarou
                     {!isLoading &&
                         data?.map((item) => (
                             <CarouselItem key={item.value} className="pl-3 basis-auto">
-                                <Badge variant={value === item.value ? "default" : "secondary"}>{item.label}</Badge>
+                                <Badge variant={value === item.value ? "default" : "secondary"}>
+                                    {item.label}
+                                </Badge>
                             </CarouselItem>
                         ))}
                 </CarouselContent>

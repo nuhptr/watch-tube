@@ -12,7 +12,10 @@ export type ChartConfig = {
     [k in string]: {
         label?: React.ReactNode
         icon?: React.ComponentType
-    } & ({ color?: string; theme?: never } | { color?: never; theme: Record<keyof typeof THEMES, string> })
+    } & (
+        | { color?: string; theme?: never }
+        | { color?: never; theme: Record<keyof typeof THEMES, string> }
+    )
 }
 
 type ChartContextProps = {
@@ -56,7 +59,9 @@ function ChartContainer({
                 {...props}
             >
                 <ChartStyle id={chartId} config={config} />
-                <RechartsPrimitive.ResponsiveContainer>{children}</RechartsPrimitive.ResponsiveContainer>
+                <RechartsPrimitive.ResponsiveContainer>
+                    {children}
+                </RechartsPrimitive.ResponsiveContainer>
             </div>
         </ChartContext.Provider>
     )
@@ -131,7 +136,11 @@ function ChartTooltipContent({
                 : itemConfig?.label
 
         if (labelFormatter) {
-            return <div className={cn("font-medium", labelClassName)}>{labelFormatter(value, payload)}</div>
+            return (
+                <div className={cn("font-medium", labelClassName)}>
+                    {labelFormatter(value, payload)}
+                </div>
+            )
         }
 
         if (!value) {
@@ -185,7 +194,8 @@ function ChartTooltipContent({
                                                         "w-1": indicator === "line",
                                                         "w-0 border-[1.5px] border-dashed bg-transparent":
                                                             indicator === "dashed",
-                                                        "my-0.5": nestLabel && indicator === "dashed",
+                                                        "my-0.5":
+                                                            nestLabel && indicator === "dashed",
                                                     }
                                                 )}
                                                 style={
@@ -307,4 +317,11 @@ function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key:
     return configLabelKey in config ? config[configLabelKey] : config[key as keyof typeof config]
 }
 
-export { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, ChartStyle }
+export {
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+    ChartLegend,
+    ChartLegendContent,
+    ChartStyle,
+}
