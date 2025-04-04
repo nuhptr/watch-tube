@@ -1,5 +1,4 @@
-import { CategoriesSection } from "../sections/category-section"
-import { Suspense } from "react"
+import { CategoriesSection } from "@/modules/home/ui/sections/category-section"
 
 interface HomeViewProps {
     categoryId?: string
